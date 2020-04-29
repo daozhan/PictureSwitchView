@@ -1,8 +1,12 @@
 package com.dao.pictureswitchview
 
 import android.content.Context
+import android.graphics.BitmapFactory
+import android.support.annotation.IdRes
 import android.util.AttributeSet
 import android.widget.FrameLayout
+import com.dao.pictureswitchview.R.attr.selectSrc
+import com.dao.pictureswitchview.R.attr.unSelectSrc
 import kotlin.math.max
 
 /**
@@ -61,6 +65,22 @@ class PictureSwitchView : FrameLayout {
 
     fun getSelect() : Boolean{
         return pictureSwitchImage.getIsSelect()
+    }
+
+
+    /**
+     * 设置选中图片
+     */
+    fun setSelectBitmapSrc(@IdRes selectBitmapSrc: Int) {
+        pictureSwitchImage.setSelectBitmapSrc(selectBitmapSrc)
+
+    }
+
+    /**
+     * 设置未选中图片
+     */
+    fun setUnSelectBitmapSrc(@IdRes mUnSelectBitmapSrc: Int) {
+        pictureSwitchBgImage.setUnSelectBitmapSrc(mUnSelectBitmapSrc)
     }
 
 }
