@@ -29,7 +29,7 @@ class PictureSwitchBgImage : ImageView {
     // 动画时间
     private var animationTime = 200
     // 移动的距离
-    private var movingDistance = dip2Px(-1f)
+    private var movingDistance = 0.01f
 
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
@@ -61,8 +61,8 @@ class PictureSwitchBgImage : ImageView {
         isSelect = !isSelect
         if (imageHeight != null) {
             val annotation = ObjectAnimator.ofFloat(
-                if(isSelect) imageHeight!! else dip2Px(-1f),
-                if(isSelect) dip2Px(-1f) else imageHeight!!
+                if(isSelect) imageHeight!! else 0.01f,
+                if(isSelect) 0.01f else imageHeight!!
             )
             annotation.duration = animationTime.toLong()
             annotation.addUpdateListener {
