@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <com.dao.pictureswitchview.PictureSwitchView
+            android:id="@+id/pictureswitchview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:selectSrc="@mipmap/tab_home_s"
+            app:unSelectSrc="@mipmap/tab_home_n"/>
+
+    <Button
+            android:id="@+id/select"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:text="设置选中"/>
+    <Button
+            android:id="@+id/un_select"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:text="设置未选中"/>
+
+</RelativeLayout>

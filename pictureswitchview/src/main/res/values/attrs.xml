@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PictureSwitchView">
+        <!--选择图片-->
+        <attr name="selectSrc" format="reference"/>
+        <!--未选择图片-->
+        <attr name="unSelectSrc" format="reference"/>
+        <!--动画时间-->
+        <attr name="loadingTextAnimationTime" format="integer"/>
+    </declare-styleable>
+</resources>
