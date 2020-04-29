@@ -1,0 +1,2 @@
+# PictureSwitchView
+更换图片时增加动画效果的控件View
