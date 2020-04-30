@@ -7,7 +7,14 @@ import android.graphics.*
 import android.support.annotation.IdRes
 import android.util.AttributeSet
 import android.view.View
+import android.view.animation.AccelerateInterpolator
+import android.view.animation.AnticipateOvershootInterpolator
+import android.view.animation.BounceInterpolator
+import android.view.animation.OvershootInterpolator
 import com.dao.practicedraw.utils.dip2Px
+import android.animation.AnimatorSet
+import kotlin.math.sqrt
+
 
 /**
  * 选中图片
@@ -29,6 +36,10 @@ class PictureSwitchImage : View {
     private var animationTime = 200
     // 移动的距离
     private var movingDistance = dip2Px(0f)
+    // 圆的半径
+    private var radius: Float = 0.0f
+    // 动画模式
+    private var animationStyle = 0
 
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
@@ -38,10 +49,14 @@ class PictureSwitchImage : View {
         super.onDraw(canvas)
         if (imageWidth != null && imageHeight != null) {
             path.reset()
-            path.rLineTo(imageWidth!!, dip2Px(0f))
-            path.lineTo(imageWidth!!, movingDistance)
-            path.rLineTo(-imageWidth!!, dip2Px(0f))
-            path.close()
+            if (animationStyle == 0) {
+                path.rLineTo(imageWidth!!, dip2Px(0f))
+                path.lineTo(imageWidth!!, movingDistance)
+                path.rLineTo(-imageWidth!!, dip2Px(0f))
+                path.close()
+            } else {
+                path.addCircle(imageWidth!! / 2, imageHeight!! / 2, movingDistance, Path.Direction.CW)
+            }
             canvas?.clipPath(path)
             canvas?.drawBitmap(mSelectBitmap, dip2Px(0f), dip2Px(0f), paint)
         }
@@ -56,18 +71,22 @@ class PictureSwitchImage : View {
      */
     fun startAnimation() {
         isSelect = !isSelect
-        if (imageHeight != null) {
-            val annotation = ObjectAnimator.ofFloat(
-                if(isSelect) imageHeight!! else dip2Px(0f),
-                if(isSelect) dip2Px(0f) else imageHeight!!
-
+        if (imageWidth != null && imageHeight != null) {
+            // 覆盖动画
+            val animator = ObjectAnimator.ofFloat(
+                if (isSelect) if (animationStyle == 0) imageHeight!! else radius else dip2Px(0f),
+                if (isSelect) dip2Px(0f) else if (animationStyle == 0) imageHeight!! else radius
             )
-            annotation.duration = animationTime.toLong()
-            annotation.addUpdateListener {
+//            val animator = ObjectAnimator.ofFloat(
+//                if(isSelect) radius else dip2Px(0f),
+//                if(isSelect) dip2Px(0f) else radius
+//            )
+            animator.duration = animationTime.toLong()
+            animator.addUpdateListener {
                 movingDistance = it.animatedValue as Float
                 invalidate()
             }
-            annotation.start()
+            animator.start()
         }
     }
 
@@ -78,6 +97,7 @@ class PictureSwitchImage : View {
         mSelectBitmap = BitmapFactory.decodeResource(resources, selectBitmapSrc)
         imageWidth = mSelectBitmap?.width?.toFloat()
         imageHeight = mSelectBitmap?.height?.toFloat()
+        radius = sqrt((imageWidth!! / 2) * (imageWidth!! / 2) + (imageHeight!! / 2) * (imageHeight!! / 2))
         invalidate()
     }
 
@@ -89,13 +109,24 @@ class PictureSwitchImage : View {
         invalidate()
     }
 
-    fun setIsSelect(isSelect : Boolean){
+    /**
+     * 设置选中
+     */
+    fun setIsSelect(isSelect: Boolean) {
         this.isSelect = isSelect
         startAnimation()
     }
 
-    fun getIsSelect() : Boolean{
+    fun getIsSelect(): Boolean {
         return isSelect
     }
 
+    fun setAnimationStyle(animationStyle: Int) {
+        this.animationStyle = animationStyle
+        startAnimation()
+    }
+
+    fun getAnimationStyle() : Int{
+        return animationStyle
+    }
 }

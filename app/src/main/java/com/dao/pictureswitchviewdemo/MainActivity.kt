@@ -20,5 +20,9 @@ class MainActivity : AppCompatActivity() {
         pictureswitchview.setOnClickListener{
             pictureswitchview.startAnimation()
         }
+
+        switch_animation_effect.setOnClickListener {
+            pictureswitchview.setAnimationStyle(if (pictureswitchview.getAnimationStyle() == 0) 1 else 0)
+        }
     }
 }

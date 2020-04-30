@@ -15,6 +15,7 @@ import kotlin.math.max
  * @date :2020/4/28 15:55
  */
 class PictureSwitchView : FrameLayout {
+
     private val pictureSwitchImage = PictureSwitchImage(context)
     private val pictureSwitchBgImage = PictureSwitchBgImage(context)
 
@@ -26,6 +27,8 @@ class PictureSwitchView : FrameLayout {
         val unSelectSrc = custom?.getResourceId(R.styleable.PictureSwitchView_unSelectSrc, R.drawable.tab_home_n)
         // 动画时间
         val animationTime = custom?.getInteger(R.styleable.PictureSwitchView_loadingTextAnimationTime, 200)
+        // 动画类型
+        val animationStyle = custom?.getInteger(R.styleable.PictureSwitchView_loadingTextAnimationStyle, 0)
         if (selectSrc != null) {
             pictureSwitchImage.setSelectBitmapSrc(selectSrc)
         }
@@ -35,6 +38,10 @@ class PictureSwitchView : FrameLayout {
         if (animationTime != null) {
             pictureSwitchImage.setLoadingAnimationTime(animationTime)
             pictureSwitchBgImage.setLoadingAnimationTime(animationTime)
+        }
+        if (animationStyle != null){
+            pictureSwitchImage.setAnimationStyle(animationStyle)
+            pictureSwitchBgImage.setAnimationStyle(animationStyle)
         }
     }
 
@@ -56,14 +63,14 @@ class PictureSwitchView : FrameLayout {
         pictureSwitchBgImage.startAnimation()
     }
 
-    fun setSelect(isSelect : Boolean){
-        if (isSelect == pictureSwitchImage.getIsSelect()){
+    fun setSelect(isSelect: Boolean) {
+        if (isSelect == pictureSwitchImage.getIsSelect()) {
             pictureSwitchImage.setIsSelect(isSelect)
             pictureSwitchBgImage.setIsSelect(isSelect)
         }
     }
 
-    fun getSelect() : Boolean{
+    fun getSelect(): Boolean {
         return pictureSwitchImage.getIsSelect()
     }
 
@@ -83,4 +90,18 @@ class PictureSwitchView : FrameLayout {
         pictureSwitchBgImage.setUnSelectBitmapSrc(mUnSelectBitmapSrc)
     }
 
+    /**
+     * 设置动画效果
+     */
+    fun setAnimationStyle(animationStyle: Int) {
+        pictureSwitchImage.setAnimationStyle(animationStyle)
+        pictureSwitchBgImage.setAnimationStyle(animationStyle)
+    }
+
+    /**
+     * 获取当前效果
+     */
+    fun getAnimationStyle() : Int{
+        return pictureSwitchImage.getAnimationStyle()
+    }
 }

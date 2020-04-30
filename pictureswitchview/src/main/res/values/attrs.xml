@@ -7,5 +7,10 @@
         <attr name="unSelectSrc" format="reference"/>
         <!--动画时间-->
         <attr name="loadingTextAnimationTime" format="integer"/>
+        <!--动画类型-->
+        <attr name="loadingTextAnimationStyle">
+            <enum name="TOP_TO_BOTTOM" value="0"/>
+            <enum name="CIRCLE" value="1"/>
+        </attr>
     </declare-styleable>
 </resources>
