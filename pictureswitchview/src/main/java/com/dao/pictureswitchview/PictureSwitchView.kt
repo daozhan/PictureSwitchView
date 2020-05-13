@@ -10,7 +10,7 @@ import com.dao.pictureswitchview.R.attr.unSelectSrc
 import kotlin.math.max
 
 /**
- *
+ * 图片切换动画
  * @author daoz
  * @date :2020/4/28 15:55
  */

@@ -17,7 +17,7 @@ import kotlin.math.sqrt
 
 
 /**
- *
+ * 背景图片
  * @author daoz
  * @date :2020/4/28 15:56
  */
@@ -123,7 +123,6 @@ class PictureSwitchBgImage : ImageView {
      */
     fun setAnimationStyle(animationStyle: Int) {
         this.animationStyle = animationStyle
-        startAnimation()
     }
 
 }

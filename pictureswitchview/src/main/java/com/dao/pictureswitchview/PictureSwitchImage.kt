@@ -13,6 +13,7 @@ import android.view.animation.BounceInterpolator
 import android.view.animation.OvershootInterpolator
 import com.dao.practicedraw.utils.dip2Px
 import android.animation.AnimatorSet
+import android.util.Log
 import kotlin.math.sqrt
 
 
@@ -115,6 +116,7 @@ class PictureSwitchImage : View {
     fun setIsSelect(isSelect: Boolean) {
         this.isSelect = isSelect
         startAnimation()
+        Log.e("dao", "setIsSelect")
     }
 
     fun getIsSelect(): Boolean {
@@ -123,7 +125,6 @@ class PictureSwitchImage : View {
 
     fun setAnimationStyle(animationStyle: Int) {
         this.animationStyle = animationStyle
-        startAnimation()
     }
 
     fun getAnimationStyle() : Int{

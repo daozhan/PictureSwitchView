@@ -12,8 +12,7 @@
             android:layout_centerInParent="true"
             app:selectSrc="@mipmap/tab_home_s"
             app:unSelectSrc="@mipmap/tab_home_n"
-            app:loadingTextAnimationTime="500"
-            app:loadingTextAnimationStyle="TOP_TO_BOTTOM"/>
+            app:loadingTextAnimationTime="500"/>
 
     <Button
             android:id="@+id/select"
